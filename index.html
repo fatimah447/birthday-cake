@@ -56,6 +56,87 @@
         audio {
             display: none;
         }
+        <!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>كعكة عيد ميلاد</title>
+    <style>
+        body {
+            margin: 0;
+            background-color: #121212;
+            font-family: "Cairo", sans-serif;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .message {
+            font-size: 8vw; /* حجم الخط يعتمد على حجم الشاشة */
+            font-weight: bold;
+            text-align: center;
+            font-family: monospace;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        @keyframes glow {
+            0% { text-shadow: 0 0 5px #fff, 0 0 10px #3b93e6, 0 0 15px #3b93e6; }
+            50% { text-shadow: 0 0 10px #fff, 0 0 20px #3b93e6, 0 0 30px #3b93e6; }
+            100% { text-shadow: 0 0 5px #fff, 0 0 10px #3b93e6, 0 0 15px #3b93e6; }
+        }
+
+        .message {
+            animation: glow 1.5s infinite alternate;
+        }
+
+        pre {
+            font-family: monospace;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            color: #f1f5f8;
+            font-size: 4vw; /* حجم الخط يعتمد على حجم الشاشة */
+            line-height: 1.3;
+            margin: 20px;
+            text-align: left;
+            max-width: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            overflow-x: auto; /* يسمح بالتمرير الأفقي إذا كانت النصوص كبيرة */
+        }
+
+        /* إخفاء عناصر الصوت */
+        audio {
+            display: none;
+        }
+
+        /* استعلامات الوسائط لتعديل التصميم على الشاشات الصغيرة */
+        @media (max-width: 768px) {
+            .message {
+                font-size: 10vw; /* حجم الخط أكبر على الشاشات الصغيرة */
+            }
+            pre {
+                font-size: 6vw;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .message {
+                font-size: 12vw; /* حجم الخط أكبر على الشاشات الصغيرة جداً */
+            }
+            pre {
+                font-size: 8vw;
+            }
+        }
     </style>
     <link href="https://youtu.be/KbtwC_0Uh40?si=wDWXPdLwTEqodsJv" rel="stylesheet">
 </head>
