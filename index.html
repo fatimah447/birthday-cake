@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>كعكة عيد ميلاد</title>
+    <style>
+        body {
+            margin: 0;
+            background-color: #121212;
+            font-family: "Cairo", sans-serif;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .message {
+            font-size: 28px;
+            font-weight: bold;
+            text-align: center;
+            font-family: monospace; /* تغيير الخط ليتناسب مع ASCII */
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        @keyframes glow {
+            0% { text-shadow: 0 0 5px #fff, 0 0 10px #3b93e6, 0 0 15px #3b93e6; }
+            50% { text-shadow: 0 0 10px #fff, 0 0 20px #3b93e6, 0 0 30px #3b93e6; }
+            100% { text-shadow: 0 0 5px #fff, 0 0 10px #3b93e6, 0 0 15px #3b93e6; }
+        }
+
+        .message {
+            animation: glow 1.5s infinite alternate;
+        }
+
+        pre {
+            font-family: monospace;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            color: #f1f5f8;
+            font-size: 12px;
+            line-height: 1.3;
+            margin: 20px;
+            text-align: left;
+            max-width: 90%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+         /* إخفاء عناصر الصوت */
+        audio {
+            display: none;
+        }
+    </style>
+    <link href="https://youtu.be/KbtwC_0Uh40?si=wDWXPdLwTEqodsJv" rel="stylesheet">
+</head>
+<body>
+     <!-- تضمين ملف صوتي موسيقى عيد الميلاد -->
+     <audio autoplay loop>
+        <source src="birthday_music.mp3" type="audio/mp3">
+        <!-- هنا يمكنك إضافة رابط صوتي مباشر -->
+        لا تدعم متصفحك الصوت.
+    </audio>
+    <div class="message" id="message"></div>
+    <pre id="asciiArt"></pre>
+
+    <script> 
+     const asciiArt = `
+      _..._  ,s$$$s.                                                                                          _..._  ,s$$$s.
+    .$$$$$$$s$$ss$$$$,                                                                                     .$$$$$$$s$$ss$$$$,
+    $$$sss$$$$s$$$$$$$                                                                                     $$$sss$$$$s$$$$$$$
+    $$ss$$$$$$$$$$$$$$                                   (             )                                   $$ss$$$$$$$$$$$$$$
+    '$$$s$$$$$$$$$$$$'                           )      (*)           (*)      (                           '$$$s$$$$$$$$$$$$'
+     '$$$$$$$$$$$$$$'                           (*)      |             |      (*)                           '$$$$$$$$$$$$$$'
+       S$$$$$$$$$$$'                             |      |~|           |~|      |                              S$$$$$$$$$$$'
+        '$$$$$$$$$'                             |~|     | |           | |     |~|                              '$$$$$$$$$'
+          '$$$$$'                               | |     | |           | |     | |                                '$$$$$'
+           '$$$'                               ,| |a@@@@| |@@@@@@@@@@@| |@@@@a| |.                                '$$$'
+             ;                            .,a@@@| |@@@@@| |@@@@@@@@@@@| |@@@@@| |@@@@a,.                            ;
+            ;                           ,a@@@@@@| |@@@@@@@@@@@@.@@@@@@@@@@@@@@| |@@@@@@@a,                         ;
+            ;                         a@@@@@@@@@@@@@@@@@@@@@' . \`@@@@@@@@@@@@@@@@@@@@@@@@a                        ;
+            ',                        ;\`@@@@@@@@@@@@@@@@@@'   .   \`@@@@@@@@@@@@@@@@@@@@@';                        ',
+             ;                        ;@@@ \`@@@@@@@@@@@@@'     .     \`@@@@@@@@@@@@@@@@'@@;                         ;
+            ,'                         ;@@@;,.aaaaaaaaaa       .       aaaaa,,aaaaaaa,;@@@;                        ,'
+            ;                          ;;@;;;;@@@@@@@@;@      @.@      ;@@@;;;@@@@@@;;;;@@;                        ;
+            ',                         ;;;;;;;@@@@;@@;;@    @@ . @@    ;;@;;;;@@;@@@;;;;;;;                        ',
+             ',                        ;;;;;;;;@@;;;;;;;  @@   .   @@  ;;;;;;;;;;;@@;;;;@;;                         ',
+              ;                        ;;;;;;;;;;;;;;;;;@@     .     @@;;;;;;;;;;;;;;;;@@@;                          ;
+             '                     ,%%%;;;;;;;;@;;;;;;;;       .       ;;;;;;;;;;;;;;;;@@;;%%%,                      '
+                                .%%%%%%;;;;;;;@@;;;;;;;;     ,%%%,     ;;;;;;;;;;;;;;;;;;;;%%%%%%,
+                               .%%%%%%%;;;;;;;@@;;;;;;;;   ,%%%%%%%,   ;;;;;;;;;;;;;;;;;;;;%%%%%%%,
+                               %%%%%%%% \`;;;;;;;;;;;;;;;;  %%%%%%%%%%%  ;;;;;;;;;;;;;;;;;;;'%%%%%%%%
+                               %%%%%%%%%%%% \`;;;;;;;;;;;;,%%%%%%%%%%%%%,;;;;;;;;;;;;;;;'%%%%%%%%%%%%
+                               \`%%%%%%%%%%%%%%%%%,,,,,,,%%%%%%%%%%%%%%%,,,,,,,%%%%%%%%%%%%%%%%%%%%'
+                                 \`%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%'
+                                     \`%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%'
+                                            """"""""""""""\`,,,,,,,,,'"""""""""""""""""
+                                                           \`%%%%%%%'
+                                                            \`%%%%%'
+                                                               %% 
+                                                              %%%%%
+                                                           .,%%%%%%%,.
+                                                      ,%%%%%%%%%%%%%%%%%%%,`;                                                                                                                                                                                                           
+
+        const asciiElement = document.getElementById("asciiArt");
+        const messageElement = document.getElementById("message");
+
+        let asciiIndex = 0;
+        let messageIndex = 0;
+
+        // وظيفة كتابة الرسالة حرفًا حرفًا
+        function typeMessage() {
+            const message = "second lieutenant Yassen🫡 Happy Birthday Habibi💙 ";
+            messageElement.style.opacity = 1; // ظهور الرسالة
+            messageElement.textContent = message.substring(0, messageIndex); // كتابة الرسالة تدريجيًا
+            if (messageIndex < message.length) {
+                messageIndex++;
+                setTimeout(typeMessage, 100); // تأخير بين كل حرف
+            }
+        }
+
+        // وظيفة كتابة ASCII art حرفًا حرفًا
+        function typeAsciiArt() {
+            asciiElement.style.opacity = 1; // ظهور ASCII art
+            asciiElement.textContent = asciiArt.substring(0, asciiIndex); // كتابة ASCII art تدريجيًا
+            if (asciiIndex < asciiArt.length) {
+                asciiIndex++;
+                setTimeout(typeAsciiArt, 5); // تأخير بين كل حرف
+            }
+        }
+
+        // بدء كتابة الرسالة وASCII art
+        typeMessage();
+        setTimeout(typeAsciiArt, 1500); // تأخير قليلا بين بدء الرسالة وASCII art
+        
+    </script>
+    
+</body>
+</html>
